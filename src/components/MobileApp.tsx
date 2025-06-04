@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Bell, Fire, ArrowRight, Play, RotateCcw, BookOpen, BarChart3, Home, Target, TrendingUp, Book, User } from 'lucide-react';
+import { Bell, Flame, ArrowRight, Play, RotateCcw, BookOpen, BarChart3, Home, Target, TrendingUp, Book, User } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -47,7 +46,7 @@ const MobileApp = () => {
                 <div>
                   <h2 className="text-xl font-semibold mb-2">Continue Your Journey</h2>
                   <div className="flex items-center gap-2">
-                    <Fire className="w-4 h-4 text-orange-400" />
+                    <Flame className="w-4 h-4 text-orange-400" />
                     <span className="text-sm">5 days streak</span>
                   </div>
                 </div>
