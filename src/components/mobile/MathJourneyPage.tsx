@@ -12,14 +12,14 @@ const MathJourneyPage = ({ onNavigate }: MathJourneyPageProps) => {
   const [showJumpMenu, setShowJumpMenu] = useState(false);
   
   const chapters = [
-    { id: 1, title: 'Basic Arithmetic', completed: true, level: 1, color: 'from-pink-400 to-pink-600' },
-    { id: 2, title: 'Fractions & Decimals', completed: true, level: 2, color: 'from-purple-400 to-purple-600' },
-    { id: 3, title: 'Algebra Basics', completed: true, level: 3, color: 'from-blue-400 to-blue-600' },
-    { id: 4, title: 'Linear Equations', completed: false, level: 4, current: true, color: 'from-green-400 to-green-600' },
-    { id: 5, title: 'Quadratic Equations', completed: false, level: 5, color: 'from-yellow-400 to-yellow-600' },
-    { id: 6, title: 'Geometry Fundamentals', completed: false, level: 6, color: 'from-red-400 to-red-600' },
-    { id: 7, title: 'Trigonometry', completed: false, level: 7, color: 'from-indigo-400 to-indigo-600' },
-    { id: 8, title: 'Calculus Intro', completed: false, level: 8, color: 'from-orange-400 to-orange-600' }
+    { id: 1, title: 'Basic Arithmetic', completed: true, level: 1, color: 'bg-pink-500' },
+    { id: 2, title: 'Fractions & Decimals', completed: true, level: 2, color: 'bg-purple-500' },
+    { id: 3, title: 'Algebra Basics', completed: true, level: 3, color: 'bg-blue-500' },
+    { id: 4, title: 'Linear Equations', completed: false, level: 4, current: true, color: 'bg-green-500' },
+    { id: 5, title: 'Quadratic Equations', completed: false, level: 5, color: 'bg-yellow-500' },
+    { id: 6, title: 'Geometry Fundamentals', completed: false, level: 6, color: 'bg-red-500' },
+    { id: 7, title: 'Trigonometry', completed: false, level: 7, color: 'bg-indigo-500' },
+    { id: 8, title: 'Calculus Intro', completed: false, level: 8, color: 'bg-orange-500' }
   ];
 
   const handleChapterClick = (chapter: any) => {
@@ -29,7 +29,7 @@ const MathJourneyPage = ({ onNavigate }: MathJourneyPageProps) => {
   };
 
   return (
-    <div className="w-[375px] h-[812px] bg-gradient-to-b from-blue-200 via-purple-200 to-pink-200 mx-auto border border-gray-200 relative overflow-hidden">
+    <div className="w-[375px] h-[812px] bg-blue-100 mx-auto border border-gray-200 relative overflow-hidden">
       {/* Status Bar */}
       <div className="h-11 bg-white/90 backdrop-blur-sm flex justify-between items-center px-6 text-sm font-medium">
         <span>9:41</span>
@@ -58,7 +58,7 @@ const MathJourneyPage = ({ onNavigate }: MathJourneyPageProps) => {
           </div>
           <Button 
             onClick={() => setShowJumpMenu(!showJumpMenu)}
-            className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white text-sm px-3 py-2 rounded-full shadow-lg"
+            className="bg-purple-500 hover:bg-purple-600 text-white text-sm px-3 py-2 rounded-full shadow-lg"
           >
             <SkipForward className="w-4 h-4 mr-1" />
             Jump
@@ -81,9 +81,9 @@ const MathJourneyPage = ({ onNavigate }: MathJourneyPageProps) => {
                   }}
                   className={`w-full text-left p-3 rounded-xl border-2 transition-all transform hover:scale-105 ${
                     chapter.completed 
-                      ? `bg-gradient-to-r ${chapter.color} text-white border-transparent shadow-lg` 
+                      ? `${chapter.color} text-white border-transparent shadow-lg` 
                       : chapter.current 
-                      ? 'bg-gradient-to-r from-green-100 to-blue-100 border-green-300 text-green-800 shadow-md'
+                      ? 'bg-green-100 border-green-300 text-green-800 shadow-md'
                       : 'bg-gray-100 border-gray-300 text-gray-400 cursor-not-allowed'
                   }`}
                   disabled={!chapter.completed && !chapter.current}
@@ -114,7 +114,7 @@ const MathJourneyPage = ({ onNavigate }: MathJourneyPageProps) => {
         </div>
 
         {/* Progress Overview */}
-        <Card className="mb-6 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 text-white shadow-xl rounded-2xl border-0">
+        <Card className="mb-6 bg-purple-600 text-white shadow-xl rounded-2xl border-0">
           <CardContent className="p-6">
             <div className="flex justify-between items-center">
               <div>
@@ -162,9 +162,9 @@ const MathJourneyPage = ({ onNavigate }: MathJourneyPageProps) => {
                       disabled={!chapter.completed && !chapter.current}
                       className={`w-20 h-20 rounded-full flex items-center justify-center text-2xl font-bold shadow-lg transition-all duration-300 transform hover:scale-110 ${
                         chapter.completed 
-                          ? `bg-gradient-to-br ${chapter.color} text-white border-4 border-white hover:shadow-2xl` 
+                          ? `${chapter.color} text-white border-4 border-white hover:shadow-2xl` 
                           : chapter.current 
-                          ? 'bg-gradient-to-br from-green-400 to-blue-500 text-white border-4 border-white animate-pulse shadow-2xl'
+                          ? 'bg-green-500 text-white border-4 border-white animate-pulse shadow-2xl'
                           : 'bg-gray-300 text-gray-500 border-4 border-gray-400 cursor-not-allowed opacity-60'
                       }`}
                     >
@@ -184,30 +184,6 @@ const MathJourneyPage = ({ onNavigate }: MathJourneyPageProps) => {
                 </div>
               );
             })}
-          </div>
-        </div>
-      </div>
-
-      {/* Cartoonish Character */}
-      <div className="absolute bottom-20 left-6 z-30">
-        <div className="relative">
-          {/* Character Body */}
-          <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-xl border-4 border-white">
-            {/* Character Face */}
-            <div className="relative">
-              {/* Eyes */}
-              <div className="absolute -top-1 -left-2 w-2 h-2 bg-black rounded-full"></div>
-              <div className="absolute -top-1 left-1 w-2 h-2 bg-black rounded-full"></div>
-              {/* Smile */}
-              <div className="absolute top-1 -left-1 w-3 h-1.5 border-b-2 border-black rounded-full"></div>
-            </div>
-          </div>
-          {/* Hat */}
-          <div className="absolute -top-2 -left-1 w-6 h-4 bg-gradient-to-r from-purple-600 to-blue-600 rounded-t-full border-2 border-white"></div>
-          {/* Speech Bubble */}
-          <div className="absolute -top-8 -right-12 bg-white rounded-lg p-2 shadow-lg border border-purple-200">
-            <p className="text-xs font-bold text-purple-800">Let's go!</p>
-            <div className="absolute bottom-0 left-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-white"></div>
           </div>
         </div>
       </div>
