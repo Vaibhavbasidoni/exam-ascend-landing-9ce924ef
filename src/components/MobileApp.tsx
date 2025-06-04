@@ -1,10 +1,37 @@
+
 import React from 'react';
 import { Bell, Flame, ArrowRight, Play, RotateCcw, BookOpen, BarChart3, Home, Target, TrendingUp, Book, User } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 
-const MobileApp = () => {
+interface MobileAppProps {
+  onNavigate: (page: string) => void;
+}
+
+const MobileApp = ({ onNavigate }: MobileAppProps) => {
+  const subjects = [
+    { subject: 'Mathematics', questions: 24, progress: 85, icon: '📊' },
+    { subject: 'Science', questions: 18, progress: 62, icon: '🔬' },
+    { subject: 'English', questions: 21, progress: 74, icon: '📚' },
+    { subject: 'History', questions: 15, progress: 45, icon: '🏛️' }
+  ];
+
+  const quickActions = [
+    { icon: Play, label: 'Practice Test', action: () => onNavigate('practice') },
+    { icon: RotateCcw, label: 'Review', action: () => onNavigate('practice') },
+    { icon: BookOpen, label: 'Flashcards', action: () => onNavigate('library') },
+    { icon: BarChart3, label: 'Analytics', action: () => onNavigate('progress') }
+  ];
+
+  const navItems = [
+    { icon: Home, label: 'Home', active: true, action: () => onNavigate('home') },
+    { icon: Target, label: 'Practice', active: false, action: () => onNavigate('practice') },
+    { icon: TrendingUp, label: 'Progress', active: false, action: () => onNavigate('progress') },
+    { icon: Book, label: 'Library', active: false, action: () => onNavigate('library') },
+    { icon: User, label: 'Profile', active: false, action: () => onNavigate('profile') }
+  ];
+
   return (
     <div className="w-[375px] h-[812px] bg-white mx-auto border border-gray-200 relative overflow-hidden">
       {/* Status Bar */}
@@ -25,13 +52,19 @@ const MobileApp = () => {
             <h1 className="text-lg font-semibold text-gray-900">Good Morning, Sarah</h1>
           </div>
           <div className="flex items-center gap-3">
-            <div className="relative">
+            <button 
+              className="relative hover:bg-gray-100 p-2 rounded-full transition-colors"
+              onClick={() => console.log('Notifications clicked')}
+            >
               <Bell className="w-6 h-6 text-gray-600" />
               <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
-            </div>
-            <div className="w-8 h-8 bg-[#3F2768] rounded-full flex items-center justify-center">
+            </button>
+            <button 
+              className="w-8 h-8 bg-[#3F2768] rounded-full flex items-center justify-center hover:bg-[#2F1D58] transition-colors"
+              onClick={() => onNavigate('profile')}
+            >
               <span className="text-white text-sm font-medium">S</span>
-            </div>
+            </button>
           </div>
         </div>
       </div>
@@ -40,7 +73,7 @@ const MobileApp = () => {
       <div className="flex-1 overflow-y-auto">
         {/* Welcome Card */}
         <div className="p-6">
-          <Card className="bg-gradient-to-br from-[#3F2768] to-[#5A3D7A] text-white shadow-lg">
+          <Card className="bg-gradient-to-br from-[#3F2768] to-[#5A3D7A] text-white shadow-lg cursor-pointer hover:shadow-xl transition-shadow">
             <CardContent className="p-6">
               <div className="flex justify-between items-start">
                 <div>
@@ -68,18 +101,17 @@ const MobileApp = () => {
         {/* Quick Actions */}
         <div className="px-6 pb-6">
           <div className="flex gap-4 overflow-x-auto pb-2">
-            {[
-              { icon: Play, label: 'Practice Test' },
-              { icon: RotateCcw, label: 'Review' },
-              { icon: BookOpen, label: 'Flashcards' },
-              { icon: BarChart3, label: 'Analytics' }
-            ].map((action, index) => (
-              <div key={index} className="flex-shrink-0 text-center">
-                <div className="w-14 h-14 bg-[#3F2768] rounded-full flex items-center justify-center mb-2 shadow-md">
+            {quickActions.map((action, index) => (
+              <button
+                key={index}
+                onClick={action.action}
+                className="flex-shrink-0 text-center hover:transform hover:scale-105 transition-transform"
+              >
+                <div className="w-14 h-14 bg-[#3F2768] rounded-full flex items-center justify-center mb-2 shadow-md hover:bg-[#2F1D58] transition-colors">
                   <action.icon className="w-6 h-6 text-white" />
                 </div>
                 <span className="text-xs text-gray-600 leading-tight">{action.label}</span>
-              </div>
+              </button>
             ))}
           </div>
         </div>
@@ -88,7 +120,13 @@ const MobileApp = () => {
         <div className="px-6 pb-6">
           <div className="flex justify-between items-center mb-3">
             <h3 className="text-lg font-semibold text-[#3F2768]">Your Progress</h3>
-            <Button variant="ghost" className="text-[#3F2768] text-sm p-0 h-auto">View All</Button>
+            <Button 
+              variant="ghost" 
+              className="text-[#3F2768] text-sm p-0 h-auto"
+              onClick={() => onNavigate('progress')}
+            >
+              View All
+            </Button>
           </div>
           <div className="space-y-2">
             <Progress value={67} className="h-2" />
@@ -99,13 +137,12 @@ const MobileApp = () => {
         {/* Subject Cards */}
         <div className="px-6 pb-6">
           <div className="space-y-3">
-            {[
-              { subject: 'Mathematics', questions: 24, progress: 85, icon: '📊' },
-              { subject: 'Science', questions: 18, progress: 62, icon: '🔬' },
-              { subject: 'English', questions: 21, progress: 74, icon: '📚' },
-              { subject: 'History', questions: 15, progress: 45, icon: '🏛️' }
-            ].map((item, index) => (
-              <Card key={index} className="border-[#D7DBDD] shadow-sm hover:shadow-md transition-shadow border-l-4 border-l-[#3F2768]">
+            {subjects.map((item, index) => (
+              <Card 
+                key={index} 
+                className="border-[#D7DBDD] shadow-sm hover:shadow-md transition-shadow border-l-4 border-l-[#3F2768] cursor-pointer"
+                onClick={() => onNavigate('practice')}
+              >
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
@@ -136,7 +173,10 @@ const MobileApp = () => {
                 <h3 className="text-lg font-semibold mb-2">Today's Challenge</h3>
                 <p className="text-sm opacity-90 mb-4">Complete 10 questions in under 15 minutes</p>
                 <div className="text-2xl font-bold mb-4">14:32</div>
-                <Button className="bg-white text-[#3F2768] hover:bg-gray-100 w-full font-medium">
+                <Button 
+                  className="bg-white text-[#3F2768] hover:bg-gray-100 w-full font-medium"
+                  onClick={() => onNavigate('quiz')}
+                >
                   Start Challenge
                 </Button>
               </div>
@@ -148,19 +188,19 @@ const MobileApp = () => {
       {/* Bottom Navigation */}
       <div className="absolute bottom-0 left-0 right-0 bg-white border-t border-[#D7DBDD]">
         <div className="flex justify-around py-2">
-          {[
-            { icon: Home, label: 'Home', active: true },
-            { icon: Target, label: 'Practice', active: false },
-            { icon: TrendingUp, label: 'Progress', active: false },
-            { icon: Book, label: 'Library', active: false },
-            { icon: User, label: 'Profile', active: false }
-          ].map((tab, index) => (
-            <div key={index} className={`flex flex-col items-center py-2 px-3 ${tab.active ? 'text-[#3F2768]' : 'text-gray-400'}`}>
+          {navItems.map((tab, index) => (
+            <button
+              key={index}
+              onClick={tab.action}
+              className={`flex flex-col items-center py-2 px-3 transition-colors ${
+                tab.active ? 'text-[#3F2768]' : 'text-gray-400'
+              }`}
+            >
               <div className={`p-1 rounded-lg ${tab.active ? 'bg-[#3F2768] bg-opacity-10' : ''}`}>
                 <tab.icon className="w-5 h-5" />
               </div>
               <span className="text-xs mt-1">{tab.label}</span>
-            </div>
+            </button>
           ))}
         </div>
       </div>

@@ -7,7 +7,7 @@ import Statistics from '@/components/Statistics';
 import Testimonials from '@/components/Testimonials';
 import HowItWorks from '@/components/HowItWorks';
 import Pricing from '@/components/Pricing';
-import MobileApp from '@/components/MobileApp';
+import MobileAppRouter from '@/components/MobileAppRouter';
 import { Button } from '@/components/ui/button';
 
 const Index = () => {
@@ -27,7 +27,7 @@ const Index = () => {
 
       {showMobile ? (
         <div className="min-h-screen bg-gray-100 flex items-center justify-center py-8">
-          <MobileApp />
+          <MobileAppRouter />
         </div>
       ) : (
         <>
