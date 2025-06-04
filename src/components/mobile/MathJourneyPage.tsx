@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { ArrowLeft, Jump, GraduationCap, Target, Home, TrendingUp, Book, User } from 'lucide-react';
+import { ArrowLeft, SkipForward, GraduationCap, Target, Home, TrendingUp, Book, User } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
@@ -60,7 +59,7 @@ const MathJourneyPage = ({ onNavigate }: MathJourneyPageProps) => {
             onClick={() => setShowJumpMenu(!showJumpMenu)}
             className="bg-[#3F2768] hover:bg-[#2F1D58] text-white text-sm px-3 py-2"
           >
-            <Jump className="w-4 h-4 mr-1" />
+            <SkipForward className="w-4 h-4 mr-1" />
             Jump
           </Button>
         </div>
