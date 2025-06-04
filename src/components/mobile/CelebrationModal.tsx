@@ -1,7 +1,6 @@
-
 import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { trophy, award, star } from 'lucide-react';
+import { Trophy, Award, Star } from 'lucide-react';
 
 interface CelebrationModalProps {
   isOpen: boolean;
