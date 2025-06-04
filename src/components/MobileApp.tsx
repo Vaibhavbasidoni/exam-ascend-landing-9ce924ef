@@ -32,6 +32,14 @@ const MobileApp = ({ onNavigate }: MobileAppProps) => {
     { icon: User, label: 'Profile', active: false, action: () => onNavigate('profile') }
   ];
 
+  const handleSubjectClick = (subject: string) => {
+    if (subject === 'Mathematics') {
+      onNavigate('math-journey');
+    } else {
+      onNavigate('practice');
+    }
+  };
+
   return (
     <div className="w-[375px] h-[812px] bg-white mx-auto border border-gray-200 relative overflow-hidden">
       {/* Status Bar */}
@@ -45,7 +53,6 @@ const MobileApp = ({ onNavigate }: MobileAppProps) => {
         </div>
       </div>
 
-      {/* Header */}
       <div className="px-6 py-4 bg-white border-b border-[#D7DBDD]">
         <div className="flex justify-between items-center">
           <div>
@@ -98,7 +105,6 @@ const MobileApp = ({ onNavigate }: MobileAppProps) => {
           </Card>
         </div>
 
-        {/* Quick Actions */}
         <div className="px-6 pb-6">
           <div className="flex gap-4 overflow-x-auto pb-2">
             {quickActions.map((action, index) => (
@@ -116,7 +122,6 @@ const MobileApp = ({ onNavigate }: MobileAppProps) => {
           </div>
         </div>
 
-        {/* Study Progress Section */}
         <div className="px-6 pb-6">
           <div className="flex justify-between items-center mb-3">
             <h3 className="text-lg font-semibold text-[#3F2768]">Your Progress</h3>
@@ -141,7 +146,7 @@ const MobileApp = ({ onNavigate }: MobileAppProps) => {
               <Card 
                 key={index} 
                 className="border-[#D7DBDD] shadow-sm hover:shadow-md transition-shadow border-l-4 border-l-[#3F2768] cursor-pointer"
-                onClick={() => onNavigate('practice')}
+                onClick={() => handleSubjectClick(item.subject)}
               >
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between">

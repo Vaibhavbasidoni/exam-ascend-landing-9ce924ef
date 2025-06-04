@@ -6,6 +6,7 @@ import ProgressPage from './mobile/ProgressPage';
 import LibraryPage from './mobile/LibraryPage';
 import ProfilePage from './mobile/ProfilePage';
 import QuizPage from './mobile/QuizPage';
+import MathJourneyPage from './mobile/MathJourneyPage';
 
 const MobileAppRouter = () => {
   const [currentPage, setCurrentPage] = useState('home');
@@ -22,6 +23,8 @@ const MobileAppRouter = () => {
         return <ProfilePage onNavigate={setCurrentPage} />;
       case 'quiz':
         return <QuizPage onNavigate={setCurrentPage} />;
+      case 'math-journey':
+        return <MathJourneyPage onNavigate={setCurrentPage} />;
       default:
         return <MobileApp onNavigate={setCurrentPage} />;
     }
