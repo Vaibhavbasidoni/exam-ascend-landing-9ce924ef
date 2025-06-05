@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Bell, Flame, ArrowRight, Play, RotateCcw, BookOpen, BarChart3, Home, Target, TrendingUp, Book, User } from 'lucide-react';
+import { Bell, Flame, ArrowRight, Play, RotateCcw, BookOpen, BarChart3, Home, Target, TrendingUp, Book, User, Calculator, FlaskConical, Languages, Landmark } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -11,10 +10,42 @@ interface MobileAppProps {
 
 const MobileApp = ({ onNavigate }: MobileAppProps) => {
   const subjects = [
-    { subject: 'Mathematics', questions: 24, progress: 85, icon: '📊' },
-    { subject: 'Science', questions: 18, progress: 62, icon: '🔬' },
-    { subject: 'English', questions: 21, progress: 74, icon: '📚' },
-    { subject: 'History', questions: 15, progress: 45, icon: '🏛️' }
+    { 
+      subject: 'Mathematics', 
+      questions: 24, 
+      progress: 85, 
+      icon: Calculator,
+      color: 'from-blue-500 to-blue-600',
+      bgColor: 'bg-blue-50',
+      iconColor: 'text-blue-600'
+    },
+    { 
+      subject: 'Science', 
+      questions: 18, 
+      progress: 62, 
+      icon: FlaskConical,
+      color: 'from-green-500 to-green-600',
+      bgColor: 'bg-green-50',
+      iconColor: 'text-green-600'
+    },
+    { 
+      subject: 'English', 
+      questions: 21, 
+      progress: 74, 
+      icon: Languages,
+      color: 'from-purple-500 to-purple-600',
+      bgColor: 'bg-purple-50',
+      iconColor: 'text-purple-600'
+    },
+    { 
+      subject: 'History', 
+      questions: 15, 
+      progress: 45, 
+      icon: Landmark,
+      color: 'from-orange-500 to-orange-600',
+      bgColor: 'bg-orange-50',
+      iconColor: 'text-orange-600'
+    }
   ];
 
   const quickActions = [
@@ -141,28 +172,55 @@ const MobileApp = ({ onNavigate }: MobileAppProps) => {
 
         {/* Subject Cards */}
         <div className="px-6 pb-6">
-          <div className="space-y-3">
+          <div className="space-y-4">
             {subjects.map((item, index) => (
               <Card 
                 key={index} 
-                className="border-[#D7DBDD] shadow-sm hover:shadow-md transition-shadow border-l-4 border-l-[#3F2768] cursor-pointer"
+                className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer overflow-hidden group"
                 onClick={() => handleSubjectClick(item.subject)}
               >
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-[#3F2768] bg-opacity-10 rounded-full flex items-center justify-center">
-                        <span className="text-lg">{item.icon}</span>
+                <CardContent className="p-0">
+                  <div className="relative">
+                    {/* Gradient Background */}
+                    <div className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-10 group-hover:opacity-20 transition-opacity duration-300`}></div>
+                    
+                    {/* Content */}
+                    <div className="relative p-4 flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        {/* Icon Container with Animation */}
+                        <div className={`w-14 h-14 ${item.bgColor} rounded-xl flex items-center justify-center transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-md`}>
+                          <item.icon className={`w-7 h-7 ${item.iconColor}`} />
+                        </div>
+                        
+                        <div>
+                          <h4 className="font-bold text-gray-900 text-lg group-hover:text-gray-700 transition-colors">{item.subject}</h4>
+                          <p className="text-sm text-gray-600">{item.questions} questions available</p>
+                          
+                          {/* Progress Bar */}
+                          <div className="mt-2 w-32">
+                            <div className="flex justify-between items-center mb-1">
+                              <span className="text-xs text-gray-500">Progress</span>
+                              <span className="text-xs font-semibold text-gray-700">{item.progress}%</span>
+                            </div>
+                            <div className="w-full bg-gray-200 rounded-full h-2">
+                              <div 
+                                className={`bg-gradient-to-r ${item.color} h-2 rounded-full transition-all duration-300 group-hover:shadow-md`}
+                                style={{ width: `${item.progress}%` }}
+                              ></div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="font-medium text-gray-900">{item.subject}</h4>
-                        <p className="text-sm text-gray-500">{item.questions} questions</p>
+                      
+                      {/* Arrow with Animation */}
+                      <div className="flex flex-col items-center gap-2">
+                        <ArrowRight className="w-6 h-6 text-gray-400 group-hover:text-gray-600 transform group-hover:translate-x-1 transition-all duration-300" />
+                        <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${item.color} opacity-60 group-hover:opacity-100 transition-opacity duration-300`}></div>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm font-medium text-[#3F2768]">{item.progress}%</span>
-                      <ArrowRight className="w-4 h-4 text-[#3F2768]" />
-                    </div>
+                    
+                    {/* Bottom Accent Line */}
+                    <div className={`h-1 bg-gradient-to-r ${item.color} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left`}></div>
                   </div>
                 </CardContent>
               </Card>
