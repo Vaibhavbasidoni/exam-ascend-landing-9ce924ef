@@ -107,7 +107,7 @@ const MathJourneyPage = ({ onNavigate }: MathJourneyPageProps) => {
       )}
 
       {/* Journey Content */}
-      <div className="flex-1 overflow-y-auto px-6 py-6 pb-32">
+      <div className="flex-1 overflow-y-auto px-6 py-6" style={{ paddingBottom: '100px' }}>
         <div className="text-center mb-6">
           <h2 className="text-3xl font-bold text-purple-800 mb-2 drop-shadow-sm">Your Math Quest</h2>
           <p className="text-purple-700 font-medium">Complete levels to unlock new adventures!</p>
@@ -130,7 +130,7 @@ const MathJourneyPage = ({ onNavigate }: MathJourneyPageProps) => {
         </Card>
 
         {/* Candy Crush Style Level Map */}
-        <div className="relative">
+        <div className="relative mb-8">
           {/* Winding Path Background */}
           <svg className="absolute inset-0 w-full h-full" style={{ height: `${chapters.length * 120}px` }}>
             <path
