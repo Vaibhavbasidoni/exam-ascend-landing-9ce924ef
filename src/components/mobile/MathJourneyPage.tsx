@@ -29,9 +29,9 @@ const MathJourneyPage = ({ onNavigate }: MathJourneyPageProps) => {
   };
 
   return (
-    <div className="w-[375px] h-[812px] bg-blue-100 mx-auto border border-gray-200 relative overflow-hidden">
+    <div className="w-[375px] h-[812px] bg-blue-100 mx-auto border border-gray-200 relative flex flex-col overflow-hidden">
       {/* Status Bar */}
-      <div className="h-11 bg-white/90 backdrop-blur-sm flex justify-between items-center px-6 text-sm font-medium">
+      <div className="h-11 bg-white/90 backdrop-blur-sm flex justify-between items-center px-6 text-sm font-medium flex-shrink-0">
         <span>9:41</span>
         <div className="flex items-center gap-1">
           <div className="w-4 h-2 bg-black rounded-sm"></div>
@@ -42,7 +42,7 @@ const MathJourneyPage = ({ onNavigate }: MathJourneyPageProps) => {
       </div>
 
       {/* Header */}
-      <div className="px-6 py-4 bg-white/90 backdrop-blur-sm border-b border-white/50">
+      <div className="px-6 py-4 bg-white/90 backdrop-blur-sm border-b border-white/50 flex-shrink-0">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <button 
@@ -107,7 +107,7 @@ const MathJourneyPage = ({ onNavigate }: MathJourneyPageProps) => {
       )}
 
       {/* Journey Content */}
-      <div className="flex-1 overflow-y-auto p-6 pb-24">
+      <div className="flex-1 overflow-y-auto px-6 py-6 pb-32">
         <div className="text-center mb-6">
           <h2 className="text-3xl font-bold text-purple-800 mb-2 drop-shadow-sm">Your Math Quest</h2>
           <p className="text-purple-700 font-medium">Complete levels to unlock new adventures!</p>
@@ -144,7 +144,7 @@ const MathJourneyPage = ({ onNavigate }: MathJourneyPageProps) => {
           </svg>
 
           {/* Level Bubbles */}
-          <div className="relative z-10 space-y-8 pt-4">
+          <div className="relative z-10 space-y-8 pt-4" style={{ height: `${chapters.length * 120}px` }}>
             {chapters.map((chapter, index) => {
               const isLeft = index % 2 === 0;
               const topPosition = index * 120;
@@ -189,7 +189,7 @@ const MathJourneyPage = ({ onNavigate }: MathJourneyPageProps) => {
       </div>
 
       {/* Bottom Navigation */}
-      <div className="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm border-t border-white/50">
+      <div className="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm border-t border-white/50 flex-shrink-0">
         <div className="flex justify-around py-2">
           {[
             { icon: Home, label: 'Home', active: false, action: () => onNavigate('home') },
