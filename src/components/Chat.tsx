@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import {
   ArrowRight,
@@ -24,6 +25,57 @@ interface ChatProps {
   onNavigate: (page: string) => void;
 }
 
+// Function to format AI messages with bold text for better interactivity
+const formatAIMessage = (content: string) => {
+  // Replace key patterns with bold formatting
+  let formatted = content
+    // Bold numbers at start of lines (like "1️⃣", "2️⃣")
+    .replace(/^(\d+️⃣[^:]+)/gm, '**$1**')
+    // Bold "Question X:"
+    .replace(/(Question \d+:)/g, '**$1**')
+    // Bold "Evaluation:"
+    .replace(/(Evaluation:)/g, '**$1**')
+    // Bold "Feedback:"
+    .replace(/(Feedback:)/g, '**$1**')
+    // Bold "Correct Answer:"
+    .replace(/(Correct Answer:)/g, '**$1**')
+    // Bold "TOPIC CHOSEN:"
+    .replace(/(TOPIC CHOSEN:)/g, '**$1**')
+    // Bold "Final Score:"
+    .replace(/(Final Score:)/g, '**$1**')
+    // Bold "Final Feedback Summary:"
+    .replace(/(Final Feedback Summary:)/g, '**$1**')
+    // Bold "Strong Areas:" and "Weak Areas:"
+    .replace(/(Strong Areas:|Weak Areas:)/g, '**$1**')
+    // Bold topic names in lists
+    .replace(/(Tenses|Modals|Subject-Verb Concord|Reported Speech|Commands, Requests, Statements, Questions)/g, '**$1**')
+    // Bold scores like "1.5/2", "7.25/20"
+    .replace(/(\d+(?:\.\d+)?\/\d+)/g, '**$1**')
+    // Bold "Welcome to" and "Class 10 CBSE Grammar Practice"
+    .replace(/(Welcome to Class 10 CBSE Grammar Practice!)/g, '**$1**')
+    // Bold modal verbs in quotes
+    .replace(/("(?:can|could|must|should|cannot|can not|must not|should not)[^"]*")/g, '**$1**');
+
+  return formatted;
+};
+
+// Function to render formatted text with bold support
+const renderFormattedText = (text: string) => {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  
+  return parts.map((part, index) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      const boldText = part.slice(2, -2);
+      return (
+        <span key={index} className="font-bold text-[#3F2768]">
+          {boldText}
+        </span>
+      );
+    }
+    return part;
+  });
+};
+
 const Chat = ({ onNavigate }: ChatProps) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputText, setInputText] = useState('');
@@ -42,7 +94,6 @@ const Chat = ({ onNavigate }: ChatProps) => {
         content: 'Hello',
         timestamp: now,
       },
-      // 2. Assistant lists topics
       {
         id: 2,
         type: 'ai',
@@ -52,14 +103,12 @@ const Chat = ({ onNavigate }: ChatProps) => {
           "You can choose *one* topic or *all* for this session. Please type your choice (e.g., 'Tenses', 'Modals', or 'All'). Once chosen, we will proceed without asking again.",
         timestamp: now,
       },
-      // 3. User picks "1"
       {
         id: 3,
         type: 'user',
         content: '1',
         timestamp: now,
       },
-      // 4. Assistant confirms topic chosen
       {
         id: 4,
         type: 'ai',
@@ -69,14 +118,12 @@ const Chat = ({ onNavigate }: ChatProps) => {
           "Are you ready to begin? Type Ready or Go when you are prepared to answer the questions.",
         timestamp: now,
       },
-      // 5. User says "ready"
       {
         id: 5,
         type: 'user',
         content: 'ready',
         timestamp: now,
       },
-      // 6. Assistant asks Question 1
       {
         id: 6,
         type: 'ai',
@@ -84,14 +131,12 @@ const Chat = ({ onNavigate }: ChatProps) => {
           "Question 1: Transform this statement into an interrogative:\n\n\"Cannot park\"",
         timestamp: now,
       },
-      // 7. User responds
       {
         id: 7,
         type: 'user',
         content: 'can not park',
         timestamp: now,
       },
-      // 8. Assistant evaluates + feedback, then Question 2
       {
         id: 8,
         type: 'ai',
@@ -104,14 +149,12 @@ const Chat = ({ onNavigate }: ChatProps) => {
           "Question 2: Rewrite the following sentence using a modal verb to express ability:\n\n\"He is able to speak three languages fluently.\"",
         timestamp: now,
       },
-      // 9. User asks for explanation
       {
         id: 9,
         type: 'user',
         content: 'i dont know this answer can u xpain',
         timestamp: now,
       },
-      // 10. Assistant explains + moves on
       {
         id: 10,
         type: 'ai',
@@ -125,14 +168,12 @@ const Chat = ({ onNavigate }: ChatProps) => {
           "Now, let's move on to the next topic: Subject-Verb Concord. Type \"Ready\" to continue.",
         timestamp: now,
       },
-      // 11. User says "ok"
       {
         id: 11,
         type: 'user',
         content: 'ok',
         timestamp: now,
       },
-      // 12. Assistant gives final score + final feedback summary
       {
         id: 12,
         type: 'ai',
@@ -274,7 +315,7 @@ const Chat = ({ onNavigate }: ChatProps) => {
                 <div className="max-w-[80%]">
                   <div className="bg-gray-200 text-black p-4 rounded-2xl rounded-br-md shadow-xl whitespace-pre-line hover:shadow-2xl transition-shadow transform hover:-translate-y-1">
                     <p className="text-sm leading-relaxed font-medium">
-                      {message.content}
+                      {renderFormattedText(formatAIMessage(message.content))}
                     </p>
                   </div>
                   <p className="text-xs text-slate-500 mt-1">{message.timestamp}</p>
