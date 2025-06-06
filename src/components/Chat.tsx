@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import {
   ArrowRight,
@@ -21,7 +20,11 @@ interface BaseMessage {
 
 type Message = BaseMessage;
 
-const Chat = () => {
+interface ChatProps {
+  onNavigate: (page: string) => void;
+}
+
+const Chat = ({ onNavigate }: ChatProps) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputText, setInputText] = useState('');
   const [isSending, setIsSending] = useState(false);
@@ -211,7 +214,12 @@ const Chat = () => {
       <div className="bg-white/90 backdrop-blur-md border-b border-slate-200 px-4 py-3 sticky top-0 z-10 shadow-sm">
         <div className="flex items-center justify-between max-w-md mx-auto">
           <div className="flex items-center gap-3">
-            <Button variant="ghost" size="icon" className="h-8 w-8">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="h-8 w-8"
+              onClick={() => onNavigate('home')}
+            >
               <ArrowRight className="h-4 w-4 rotate-180 text-blue-600" />
             </Button>
             <div className="text-center">
