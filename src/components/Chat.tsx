@@ -62,7 +62,7 @@ const Chat = () => {
         type: 'ai',
         content:
           "TOPIC CHOSEN: Tenses\n\n" +
-          "Now that you've chosen "Tenses," we will focus on this topic.\n\n" +
+          "Now that you've chosen \"Tenses,\" we will focus on this topic.\n\n" +
           "Are you ready to begin? Type Ready or Go when you are prepared to answer the questions.",
         timestamp: now,
       },
@@ -78,7 +78,7 @@ const Chat = () => {
         id: 6,
         type: 'ai',
         content:
-          "Question 1: Transform this statement into an interrogative:\n\n"Cannot park"",
+          "Question 1: Transform this statement into an interrogative:\n\n\"Cannot park\"",
         timestamp: now,
       },
       // 7. User responds
@@ -94,11 +94,11 @@ const Chat = () => {
         type: 'ai',
         content:
           "Evaluation: 1.5/2\n\n" +
-          "Feedback: "Cannot park" is grammatically correct and conveys the idea of prohibition. However, in this context, a stronger sense of obligation or prohibition is more appropriate. While "can not" indicates a lack of permission, another modal verb would better emphasize the rule or law being broken.\n\n" +
-          "Correct Answer: "must not park" or "should not park"\n\n" +
-          ""Must not park" expresses a strong prohibition, while "should not park" suggests a strong recommendation against parking. Either of these would be slightly more fitting than "cannot" in this context.\n\n" +
+          "Feedback: \"Cannot park\" is grammatically correct and conveys the idea of prohibition. However, in this context, a stronger sense of obligation or prohibition is more appropriate. While \"can not\" indicates a lack of permission, another modal verb would better emphasize the rule or law being broken.\n\n" +
+          "Correct Answer: \"must not park\" or \"should not park\"\n\n" +
+          "\"Must not park\" expresses a strong prohibition, while \"should not park\" suggests a strong recommendation against parking. Either of these would be slightly more fitting than \"cannot\" in this context.\n\n" +
           "Let's proceed to the next question.\n\n" +
-          "Question 2: Rewrite the following sentence using a modal verb to express ability:\n\n"He is able to speak three languages fluently."",
+          "Question 2: Rewrite the following sentence using a modal verb to express ability:\n\n\"He is able to speak three languages fluently.\"",
         timestamp: now,
       },
       // 9. User asks for explanation
@@ -114,12 +114,12 @@ const Chat = () => {
         type: 'ai',
         content:
           "Okay, I can explain it to you.\n\n" +
-          "The original sentence, "He is able to speak three languages fluently," expresses the ability to do something. Modal verbs like "can," "could," and "be able to" are often used to express ability.\n\n" +
-          "In this case, the simplest way to rewrite the sentence using a modal verb is to replace "is able to" with "can."\n\n" +
+          "The original sentence, \"He is able to speak three languages fluently,\" expresses the ability to do something. Modal verbs like \"can,\" \"could,\" and \"be able to\" are often used to express ability.\n\n" +
+          "In this case, the simplest way to rewrite the sentence using a modal verb is to replace \"is able to\" with \"can.\"\n\n" +
           "Correct Answer: He can speak three languages fluently.\n\n" +
-          "This sentence conveys the same meaning as the original but uses the modal verb "can" to express the ability directly.\n\n" +
+          "This sentence conveys the same meaning as the original but uses the modal verb \"can\" to express the ability directly.\n\n" +
           "Evaluation: 0/2 (Since you indicated you don't know the answer)\n\n" +
-          "Now, let's move on to the next topic: Subject-Verb Concord. Type "Ready" to continue.",
+          "Now, let's move on to the next topic: Subject-Verb Concord. Type \"Ready\" to continue.",
         timestamp: now,
       },
       // 11. User says "ok"
@@ -143,7 +143,7 @@ const Chat = () => {
           "• Commands, Requests, Statements, Questions: 4/4\n\n" +
           "Total: 7.25/20\n\n" +
           "Final Feedback Summary:\n" +
-          "• Strong Areas: You demonstrated a good understanding of identifying commands and converting statements into questions. Your score in "Commands, Requests, Statements, Questions" indicates a solid grasp of these concepts.\n\n" +
+          "• Strong Areas: You demonstrated a good understanding of identifying commands and converting statements into questions. Your score in \"Commands, Requests, Statements, Questions\" indicates a solid grasp of these concepts.\n\n" +
           "• Weak Areas: Your performance was weaker in Tenses, Subject-Verb Concord, and Reported Speech. This suggests a need for more focused practice in these areas.\n" +
           "  – Tenses: Pay close attention to the nuances of different tenses, especially the future perfect and past perfect continuous. Practice identifying and using them in context.\n" +
           "  – Subject-Verb Concord: Remember to carefully identify the subject of the sentence and ensure that the verb agrees with it in number. Be particularly mindful of sentences with phrases that come between the subject and the verb.\n" +
