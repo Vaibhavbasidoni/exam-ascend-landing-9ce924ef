@@ -16,7 +16,7 @@ const MobileApp = ({ onNavigate }: MobileAppProps) => {
       subject: 'Mathematics', 
       questions: 24, 
       progress: 85, 
-      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=400&fit=crop&crop=center',
+      image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&h=400&fit=crop&crop=center',
       color: 'from-blue-500 to-blue-600',
       bgColor: 'bg-gradient-to-br from-blue-100 to-blue-200',
       iconColor: 'text-blue-700'
@@ -25,7 +25,7 @@ const MobileApp = ({ onNavigate }: MobileAppProps) => {
       subject: 'Science', 
       questions: 18, 
       progress: 62, 
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=400&fit=crop&crop=center',
+      image: 'https://images.unsplash.com/photo-1518152006812-edab29b069ac?w=400&h=400&fit=crop&crop=center',
       color: 'from-green-500 to-green-600',
       bgColor: 'bg-gradient-to-br from-green-100 to-green-200',
       iconColor: 'text-green-700'
@@ -34,7 +34,7 @@ const MobileApp = ({ onNavigate }: MobileAppProps) => {
       subject: 'English', 
       questions: 21, 
       progress: 74, 
-      image: 'https://images.unsplash.com/photo-1473091534298-04dcbce3278c?w=400&h=400&fit=crop&crop=center',
+      image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=400&fit=crop&crop=center',
       color: 'from-purple-500 to-purple-600',
       bgColor: 'bg-gradient-to-br from-purple-100 to-purple-200',
       iconColor: 'text-purple-700'
@@ -43,7 +43,7 @@ const MobileApp = ({ onNavigate }: MobileAppProps) => {
       subject: 'History', 
       questions: 15, 
       progress: 45, 
-      image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=400&fit=crop&crop=center',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=center',
       color: 'from-orange-500 to-orange-600',
       bgColor: 'bg-gradient-to-br from-orange-100 to-orange-200',
       iconColor: 'text-orange-700'
@@ -68,6 +68,8 @@ const MobileApp = ({ onNavigate }: MobileAppProps) => {
   const handleSubjectClick = (subject: string) => {
     if (subject === 'Mathematics') {
       onNavigate('math-journey');
+    } else if (subject === 'English') {
+      onNavigate('chat');
     } else {
       onNavigate('practice');
     }
@@ -188,13 +190,10 @@ const MobileApp = ({ onNavigate }: MobileAppProps) => {
                   >
                     <CardContent className="p-0">
                       <div className="relative">
-                        {/* Gradient Background */}
                         <div className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-10 group-hover:opacity-20 transition-opacity duration-300`}></div>
                         
-                        {/* Content */}
                         <div className="relative p-4 flex items-center justify-between">
                           <div className="flex items-center gap-4">
-                            {/* Image Container with Animation */}
                             <div className={`w-20 h-20 ${item.bgColor} rounded-xl flex items-center justify-center transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg overflow-hidden`}>
                               <img 
                                 src={item.image} 
@@ -207,7 +206,6 @@ const MobileApp = ({ onNavigate }: MobileAppProps) => {
                               <h4 className="font-bold text-gray-900 text-lg group-hover:text-gray-700 transition-colors">{item.subject}</h4>
                               <p className="text-sm text-gray-600">{item.questions} questions available</p>
                               
-                              {/* Progress Bar */}
                               <div className="mt-2 w-32">
                                 <div className="flex justify-between items-center mb-1">
                                   <span className="text-xs text-gray-500">Progress</span>
@@ -223,14 +221,12 @@ const MobileApp = ({ onNavigate }: MobileAppProps) => {
                             </div>
                           </div>
                           
-                          {/* Arrow with Animation */}
                           <div className="flex flex-col items-center gap-2">
                             <ArrowRight className="w-6 h-6 text-gray-400 group-hover:text-gray-600 transform group-hover:translate-x-1 transition-all duration-300" />
                             <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${item.color} opacity-60 group-hover:opacity-100 transition-opacity duration-300`}></div>
                           </div>
                         </div>
                         
-                        {/* Bottom Accent Line */}
                         <div className={`h-1 bg-gradient-to-r ${item.color} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left`}></div>
                       </div>
                     </CardContent>
@@ -255,7 +251,7 @@ const MobileApp = ({ onNavigate }: MobileAppProps) => {
                     </Button>
                   </div>
                 </CardContent>
-              </div>
+              </Card>
             </div>
           </div>
         </ScrollArea>
